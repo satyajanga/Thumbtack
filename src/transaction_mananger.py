@@ -16,9 +16,7 @@ class TransactionManager:
                 cmd = ["SET", key, cur_val]
             self.active_tx.append(cmd)
         
-  #      print key,val
         default_db.set(key, val)
-   #     print default_db.get(key)
 
 
     def handle_get(self, key):
@@ -28,18 +26,22 @@ class TransactionManager:
         return default_db.num_equal_to(val)
 
     def handle_unset(self, key):
+        if self.cur_tx_index > 0:
+            cur_val = default_db.get(key)
+            if cur_val != "NULL":
+                cmd = ["SET", key, cur_val]
+                self.active_tx.append(cmd)
+        
         default_db.unset(key)
     
     def handle_begin(self):
-        if len(self.active_tx) is not 0:
+        if self.cur_tx_index > 0:
             self.transactions.append(self.active_tx)
         self.active_tx = []
         self.cur_tx_index += 1
         
 
     def handle_rollback(self):
-#        print self.transactions
- #       print self.active_tx
         if self.cur_tx_index is 0:
             print "NO TRANSACTION"
             return

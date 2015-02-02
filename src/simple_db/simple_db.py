@@ -53,11 +53,4 @@ class SimpleDB:
             
     def get_keys(self):
         return self.table.keys()
-
-
-    def merge(self, new_db):
-        new_db_keys =   new_db.get_keys()
-        for key in new_db_keys:
-            self.set(key, new_db.get(key))
-
    

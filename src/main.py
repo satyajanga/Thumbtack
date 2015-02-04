@@ -1,6 +1,5 @@
 #!/usr/bin/python
-from transaction_mananger import TransactionManager
-tx_manager = TransactionManager()
+from simple_db import tx_manager
 
 while True:
     input_cmd = raw_input().strip().split()
@@ -15,7 +14,9 @@ while True:
         elif input_cmd[0] == "COMMIT":
             tx_manager.handle_commit()
         elif input_cmd[0] == "ROLLBACK":
-            tx_manager.handle_rollback()
+            ret = tx_manager.handle_rollback()
+            if ret:
+                print ret
         else:
             print "INVALID CMD"
 

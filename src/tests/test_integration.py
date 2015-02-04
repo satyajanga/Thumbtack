@@ -2,8 +2,8 @@ import unittest
 from subprocess import check_output
 from config import config
 
-class TestSimpleDB(unittest.TestCase):
-    cmd = "python " + config['main_file'] + " < " + config['test_cases_path'] 
+class TestMain(unittest.TestCase):
+    cmd = "python " + config['main_file'] + " < " + config['input_files_path'] 
     
     def test_set_get_unset(self):
         output = check_output(self.cmd + "/input1.txt", shell = True)

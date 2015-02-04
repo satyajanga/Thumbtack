@@ -1,3 +1,4 @@
-from simple_db import SimpleDB
 
-default_db = SimpleDB()
+from transaction_manager import TransactionManager
+
+tx_manager = TransactionManager()

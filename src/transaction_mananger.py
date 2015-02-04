@@ -28,7 +28,7 @@ class TransactionManager:
     def handle_unset(self, key):
         if self.cur_tx_index > 0:
             cur_val = default_db.get(key)
-            if cur_val != "NULL":
+            if cur_val:
                 cmd = ["SET", key, cur_val]
                 self.active_tx.append(cmd)
         

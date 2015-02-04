@@ -5,12 +5,12 @@ class SimpleDB:
     inverse_table = defaultdict(set)
     
     def set(self, key, value):
-        if key is None or value is None:
+        if not key or not value:
             return
         previous_val = self.table[key]
-        if previous_val is not None:
+        if previous_val:
             self.inverse_table[previous_val].remove(key)
-            if len(self.inverse_table[previous_val]) is 0:
+            if not self.inverse_table[previous_val]:
                 del self.inverse_table[previous_val]
          
         self.table[key] = value
@@ -22,9 +22,9 @@ class SimpleDB:
 
     def unset(self, key):
         value = self.table[key]
-        if value is not None:
+        if value:
             self.inverse_table[value].remove(key)
-            if len(self.inverse_table[value]) is 0:
+            if not self.inverse_table[value]:
                 del self.inverse_table[value]
             del self.table[key]
         return

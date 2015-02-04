@@ -19,7 +19,7 @@ class TestSimpleDB(unittest.TestCase):
     
     def test_transaction2(self):
         output = check_output(self.cmd + "/input4.txt", shell = True)
-        self.assertEqual(output, "40\n")
+        self.assertEqual(output, "40\nNO TRANSACTION\n")
     
     def test_transaction3(self):
         output = check_output(self.cmd + "/input5.txt", shell = True)

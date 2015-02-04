@@ -60,14 +60,7 @@ class TransactionManager:
     
 
     def handle_commit(self):
-        if self.cur_tx_index is 0:
-            return
-
-        self.cur_tx_index -= 1
-        self.active_tx = []
-        if self.cur_tx_index > 0:
-            self.active_tx = self.transactions[-1]
-            self.transactions.pop(-1)
-    
-
-
+        self.transactions[:] = []
+        self.active_tx[:] = []
+        self.cur_tx_index = 0
+        return

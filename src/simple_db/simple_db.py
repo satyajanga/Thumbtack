@@ -7,9 +7,8 @@ class SimpleDB:
     def set(self, key, value):
         if key is None or value is None:
             return
-
-        if key in self.table:
-            previous_val = self.table[key]
+        previous_val = self.table[key]
+        if previous_val is not None:
             self.inverse_table[previous_val].remove(key)
             if len(self.inverse_table[previous_val]) is 0:
                 del self.inverse_table[previous_val]
@@ -18,8 +17,6 @@ class SimpleDB:
         self.inverse_table[value].add(key)
 
     def get(self, key):
-     #   if key not in self.table:
-      #      return "NULL"
         return self.table[key]
 
 
@@ -29,9 +26,7 @@ class SimpleDB:
             self.inverse_table[value].remove(key)
             if len(self.inverse_table[value]) is 0:
                 del self.inverse_table[value]
-
-        
-        del self.table[key]
+            del self.table[key]
         return
 
     def num_equal_to(self, val):

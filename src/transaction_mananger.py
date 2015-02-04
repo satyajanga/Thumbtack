@@ -10,7 +10,7 @@ class TransactionManager:
         if self.cur_tx_index > 0:
             cmd = []
             cur_val = default_db.get(key)
-            if cur_val is "NULL":
+            if cur_val is None:
                 cmd = ["UNSET", key]
             else:
                 cmd = ["SET", key, cur_val]

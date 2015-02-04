@@ -5,7 +5,6 @@ tx_manager = TransactionManager()
 while True:
     input_cmd = raw_input().strip().split()
 
-    #print input_cmd
     len_input = len(input_cmd)
 
     if len_input is 1:
@@ -24,7 +23,11 @@ while True:
         if input_cmd[0] == "NUMEQUALTO":
             print  tx_manager.handle_num_equal_to(input_cmd[1])        
         elif input_cmd[0] == "GET":
-            print tx_manager.handle_get(input_cmd[1])
+            val = tx_manager.handle_get(input_cmd[1])
+            if val is None:
+                print "NULL"
+            else:
+                print val
         elif input_cmd[0] == "UNSET":
             tx_manager.handle_unset(input_cmd[1])
         else:
